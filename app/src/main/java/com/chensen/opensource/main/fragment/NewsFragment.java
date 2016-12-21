@@ -1,19 +1,19 @@
 package com.chensen.opensource.main.fragment;
 
-import android.os.Bundle;
+import android.content.Context;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.chensen.opensource.R;
 import com.chensen.opensource.common.base.BaseTitleFragment;
+import com.chensen.opensource.common.view.TabPickerView;
 import com.chensen.opensource.interf.OnTabReselectedListener;
+import com.chensen.opensource.main.MainActivity;
+import com.chensen.opensource.main.adapter.FragmentPagerAdapter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -25,10 +25,24 @@ public class NewsFragment extends BaseTitleFragment implements OnTabReselectedLi
 
     @BindView(R.id.tablayout)
     TabLayout mLayoutTab;
+    @BindView(R.id.view_tab_picker)
+    TabPickerView mViewTabPicker;
     @BindView(R.id.iv_subscribe)
     ImageView ivSubscribe;
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
+
+    private MainActivity activity;
+    private Fragment mCurrentFragment;
+    private FragmentPagerAdapter mAdapter;
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (MainActivity) context;
+
+    }
 
     @Override
     protected int getContentLayoutId() {
@@ -44,7 +58,6 @@ public class NewsFragment extends BaseTitleFragment implements OnTabReselectedLi
     public void onTabReselected() {
 
     }
-
 
 
     @OnClick(R.id.iv_subscribe)
